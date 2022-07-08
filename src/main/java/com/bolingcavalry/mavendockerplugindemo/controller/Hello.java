@@ -9,7 +9,7 @@ import java.util.Date;
 public class Hello {
 
     @RequestMapping("/")
-    public String SayHello(){
+    public String SayHelloi(){
     	//修改返回的字符串的内容
         return "123456. Hello jenkins, " + new Date();
     }
