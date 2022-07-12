@@ -1,0 +1,10 @@
+*   @CyberXCorp/code-reviewers @CyberXCorp/code-owner-pb
+
+## 这个很重要，只能选择’@CyberXCorp/code-owner-pb‘或’@CyberXCorp/code-owner-trade‘
+CODEOWNERS   @CyberXCorp/code-owner-pb
+
+## 以下不需要更改
+/rpmbuild/   @CyberXCorp/devops
+/chart/      @CyberXCorp/devops
+Jenkinsfile  @CyberXCorp/devops
+Dockerfile   @CyberXCorp/devops

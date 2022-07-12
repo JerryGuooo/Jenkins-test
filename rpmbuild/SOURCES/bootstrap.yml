@@ -1,0 +1,7 @@
+spring:
+  cloud:
+    config:
+      enabled: true
+      uri: https://config-server.cyberx.com:443
+      name: ems,ccpair,gateway,strategy,algoparams,exchconfigs
+      profile: ${spring.profiles.active}
