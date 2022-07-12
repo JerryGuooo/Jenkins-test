@@ -1,0 +1,243 @@
+credentials:
+  system:
+    domainCredentials:
+    - credentials:
+      - string:
+          id: "jenkins"
+          scope: GLOBAL
+          secret: "{AQAAABAAAAAwltlk3R3tgFDqrmiavtcMuboMP/q2PDSByxM/G7yrRfONYw+eq594BRReIWdXe1RGnU9VvLI08MxtGolAV76BWw==}"
+      - string:
+          id: "jenkinsqqq"
+          scope: GLOBAL
+          secret: "{AQAAABAAAAAwz9Gydy9L6iC7fkd2yHLRo0e8i9y7Jqm8mUAfpFyRMeMN3XX9l5aMLs3+ro+abtAwQmwyKy6LBUNTlmAwcABoqA==}"
+      - usernamePassword:
+          id: "abf6e847-b7cd-4222-b4e0-f339eda96245"
+          password: "{AQAAABAAAAAgey0nfgdOD/igN/6lE6Z1MZkJSSE65uzJ/bSyn8rapk4Qwuw24H3P74lxhrd5cNKx}"
+          scope: GLOBAL
+          username: "JerryGuooo"
+      - string:
+          id: "jenkinsaaa"
+          scope: GLOBAL
+          secret: "{AQAAABAAAAAwXk59iYFF/pQoSviBkEU/ZFGRh8PBoPTYq+TD1vI6lZrU+UNmGVDIOjXz5IRoz3GcOb0y/i9J0Or78OAI8TcOrQ==}"
+      - usernamePassword:
+          id: "38dd5a39-e777-43e6-9140-7ebb2e75f7b0"
+          password: "{AQAAABAAAAAgobsMuq1rJcT6BO+TI3FXfcJIN7DoL18rTrCO8/hecLNaUhwTP444ddFajk89+JIK}"
+          scope: GLOBAL
+          username: "JerryGuooo"
+jenkins:
+  agentProtocols:
+  - "JNLP4-connect"
+  - "Ping"
+  systemMessage: "Jenkins configured automatically by Jenkins Configuration as Code plugin\n\n"
+  numExecutors: 5
+  scmCheckoutRetryCount: 2
+  mode: NORMAL
+
+  globalNodeProperties:
+    - envVars:
+        env:
+          - key: FOO
+            value: BAR
+
+  authorizationStrategy:
+    loggedInUsersCanDoAnything:
+      allowAnonymousRead: false
+  clouds:
+  - kubernetes:
+      containerCap: 10
+      containerCapStr: "10"
+      jenkinsTunnel: "jenkins-test-agent.guozhiwei.svc.cluster.local:50000"
+      jenkinsUrl: "http://jenkins-test.guozhiwei.svc.cluster.local:8080"
+      name: "kubernetes"
+      namespace: "guozhiwei"
+      podLabels:
+      - key: "jenkins/jenkins-test-jenkins-agent"
+        value: "true"
+      serverUrl: "https://kubernetes.default"
+      templates:
+      - containers:
+        - args: "^${computer.jnlpmac} ^${computer.name}"
+          envVars:
+          - envVar:
+              key: "JENKINS_URL"
+              value: "http://jenkins-test.guozhiwei.svc.cluster.local:8080/"
+          image: "jenkins/inbound-agent:4.11.2-4"
+          name: "jnlp"
+          resourceLimitCpu: "512m"
+          resourceLimitMemory: "512Mi"
+          resourceRequestCpu: "512m"
+          resourceRequestMemory: "512Mi"
+          workingDir: "/home/jenkins/agent"
+        id: "be62f2fe67fa3e83c0157edaa53417c084c49a8aa88c3702e3ca1cc8df3fcbe2"
+        label: "jenkins-test-jenkins-agent"
+        name: "default"
+        namespace: "guozhiwei"
+        nodeUsageMode: NORMAL
+        podRetention: "never"
+        serviceAccount: "default"
+        slaveConnectTimeout: 100
+        slaveConnectTimeoutStr: "100"
+        yamlMergeStrategy: "override"
+  crumbIssuer:
+    standard:
+      excludeClientIPFromCrumb: true
+  disableRememberMe: false
+  labelAtoms:
+  - name: "built-in"
+  - name: "jenkins-test-jenkins-agent"
+  markupFormatter: "plainText"
+  mode: NORMAL
+  myViewsTabBar: "standard"
+  numExecutors: 0
+  primaryView:
+    all:
+      name: "all"
+  projectNamingStrategy: "standard"
+  quietPeriod: 5
+  remotingSecurity:
+    enabled: true
+  scmCheckoutRetryCount: 0
+  securityRealm:
+    local:
+      allowsSignup: false
+      enableCaptcha: false
+      users:
+      - id: "admin"
+        name: "Jenkins Admin"
+        properties:
+        - "apiToken"
+        - "mailer"
+        - "myView"
+        - preferredProvider:
+            providerId: "default"
+        - "timezone"
+        - "favorite"
+  slaveAgentPort: 50000
+  updateCenter:
+    sites:
+    - id: "default"
+      url: "https://updates.jenkins.io/update-center.json"
+  views:
+  - all:
+      name: "all"
+  viewsTabBar: "standard"
+globalCredentialsConfiguration:
+  configuration:
+    providerFilter: "none"
+    typeFilter: "none"
+security:
+  apiToken:
+    creationOfLegacyTokenEnabled: false
+    tokenGenerationOnCreationEnabled: false
+    usageStatisticsEnabled: true
+  sSHD:
+    port: -1
+unclassified:
+  buildDiscarders:
+    configuredBuildDiscarders:
+    - "jobBuildDiscarder"
+  fingerprints:
+    fingerprintCleanupDisabled: false
+    storage: "file"
+  gitHubConfiguration:
+    apiRateLimitChecker: NoThrottle
+  gitHubPluginConfig:
+    configs:
+    - credentialsId: "jenkinsqqq"
+      name: "jenkins"
+    hookSecretConfigs:
+    - credentialsId: "jenkinsqqq"
+    hookUrl: "http://jenkins-test:8080/github-webhook/"
+  gitSCM:
+    addGitTagAction: false
+    allowSecondFetch: false
+    createAccountBasedOnEmail: false
+    disableGitToolChooser: false
+    globalConfigEmail: "gzw1213@126.com"
+    globalConfigName: "JerryGuooo"
+    hideCredentials: false
+    showEntireCommitSummaryInChanges: false
+    useExistingAccountWithSameEmail: false
+  junitTestResultStorage:
+    storage: "file"
+  location:
+    adminAddress: "address not configured yet <nobody@nowhere>"
+    url: "http://zhiwei.pb.cyberx.cc/"
+  mailer:
+    charset: "UTF-8"
+    useSsl: false
+    useTls: false
+  mavenModuleSet:
+    localRepository: "default"
+  metricsAccessKey:
+    accessKeys:
+    - canHealthCheck: true
+      canMetrics: true
+      canPing: true
+      canThreadDump: true
+      description: "jenkins-test"
+      key: "{AQAAABAAAABQAlEeh0FNkdoWy6iLseFA1CO7bH/PIS6KXEcqhpw68mZutzst963Q4dXKDQExy4MR6JoRaagmkDCRFAGrhdIh7XceRkYAuocxxtKfWdqkeKCdhgEquuiaLxtnWkD5tXLc}"
+      origins: "*"
+  pollSCM:
+    pollingThreadCount: 10
+  whitelist:
+    enabled: true
+    whitelistItems:
+    - hmacAlgorithm: "HmacSHA256"
+      host: "192.30.252.0/22"
+    - hmacAlgorithm: "HmacSHA256"
+      host: "185.199.108.0/22"
+    - hmacAlgorithm: "HmacSHA256"
+      host: "140.82.112.0/20"
+    - hmacAlgorithm: "HmacSHA256"
+      host: "143.55.64.0/20"
+    - hmacAlgorithm: "HmacSHA256"
+      host: "192.30.252.153/32"
+    - hmacAlgorithm: "HmacSHA256"
+      host: "192.30.252.154/32"
+tool:
+  git:
+    installations:
+    - home: "git"
+      name: "Default"
+  maven:
+    installations:
+    - name: "maventest"
+      properties:
+      - installSource:
+          installers:
+          - maven:
+              id: "3.8.6"
+  mavenGlobalConfig:
+    globalSettingsProvider: "standard"
+    settingsProvider: "standard"
+
+unclassified:
+  artifactorybuilder:
+    useCredentialsPlugin: true
+    jfrogInstances:
+      - instanceId: artifactory
+        platformUrl: http://acme.com/artifactory
+        artifactoryUrl: http://acme.com/artifactory
+        distributionUrl: http://acme.com/distribution
+        resolverCredentialsConfig:
+          username: artifactory_user
+          password: "${ARTIFACTORY_PASSWORD}"
+
+  globalLibraries:
+    libraries:
+      - name: "awesome-lib"
+        retriever:
+          modernSCM:
+            scm:
+              git:
+                remote: "https://github.com/jenkins-infra/pipeline-library.git"
+
+  location:
+    adminAddress: you@example.com
+    url: https://ci.example.com/
+
+  mailer:
+    replyToAddress: do-not-reply@acme.org
+    smtpHost: smtp.acme.org
+    smtpPort: 4441
