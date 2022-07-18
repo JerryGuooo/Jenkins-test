@@ -1,0 +1,18 @@
+[Unit]
+Description=Cyberx cyberx-ems
+[Service]
+Type=simple
+EnvironmentFile=-/etc/default/cyberx-ems
+User=cyberx-ems
+Group=cyberx-ems
+WorkingDirectory=/opt/cyberx-ems
+ExecStart=/bin/java -server -XX:+UseConcMarkSweepGC -XX:+UseParNewGC -XX:+CMSParallelRemarkEnabled  -XX:+DisableExplicitGC -XX:+UseFastAccessorMethods -XX:+UseCMSInitiatingOccupancyOnly -XX:CMSInitiatingOccupancyFraction=70 -Xms2g -Xmx4g -Xmn512m -jar cyberx-ems-2.2.0.jar
+
+SuccessExitStatus=143
+SyslogIdentifier=cyberx_app
+
+Restart=always
+LimitNOFILE=65535
+
+[Install]
+WantedBy=multi-user.target
